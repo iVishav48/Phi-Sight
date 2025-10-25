@@ -78,7 +78,7 @@ export default function AboutUsPage() {
                         target="_blank"
                         className="text-primary hover:underline"
                       >
-                        Ashmit Singh - Project Manager
+                        Vishavjit Singh - Project Manager
                       </Link>
                     </li>
                     <li className="flex items-center gap-2">
@@ -88,7 +88,7 @@ export default function AboutUsPage() {
                         target="_blank"
                         className="text-primary hover:underline"
                       >
-                        Harsh Partap Jain - Lead Developer
+                        Sohraab Dhillon - Lead Developer
                       </Link>
                     </li>
                     <li className="flex items-center gap-2">
@@ -99,7 +99,7 @@ export default function AboutUsPage() {
                         className="text-primary hover:underline"
                       >
                         
-                        Gurleen Kaur - Research And Development
+                        Vishavjit singh - Research And Development
                       </Link>
                     </li>
                   </ul>
