@@ -74,7 +74,7 @@ export default function AboutUsPage() {
                     <li className="flex items-center gap-2">
                       <Compass className="h-5 w-5 text-primary" />
                       <Link
-                        href="https://www.linkedin.com/in/ashmitsingh21/"
+                        href="https://www.linkedin.com/in/vishavjit-singh-s0724/"
                         target="_blank"
                         className="text-primary hover:underline"
                       >
@@ -84,7 +84,7 @@ export default function AboutUsPage() {
                     <li className="flex items-center gap-2">
                       <Bolt className="h-5 w-5 text-primary" />
                       <Link
-                        href="https://www.linkedin.com/in/harshpartapjain/"
+                        href="https://www.linkedin.com/in/sohraab-dhillon/"
                         target="_blank"
                         className="text-primary hover:underline"
                       >
@@ -94,7 +94,7 @@ export default function AboutUsPage() {
                     <li className="flex items-center gap-2">
                       <Telescope className="h-5 w-5 text-primary" />
                       <Link
-                        href="https://www.linkedin.com/in/gurleen-kaur-72b116294/"
+                        href="https://www.linkedin.com/in/arman-1b323a265/"
                         target="_blank"
                         className="text-primary hover:underline"
                       >
