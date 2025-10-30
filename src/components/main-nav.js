@@ -21,6 +21,7 @@ export function MainNav() {
 
   const routes = [
     { href: "/", label: "Home" },
+    { href: "/calculate", label: "Golden Ratio Calculator" },
     { href: "/image-analysis", label: "Image Analysis" },
     { href: "/about", label: "About" },
     { href: "/pricing", label: "Pricing" },
