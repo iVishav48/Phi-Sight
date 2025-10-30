@@ -1,19 +1,25 @@
-// client-nextjs/src/app/api/analyze/route.js
+
 import { NextRequest, NextResponse } from 'next/server';
 import sharp from 'sharp';
 import path from 'path';
 import { promises as fs } from 'fs';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
+// The Golden Ratio constant.
 const PHI = 1.618033988749895;
+// The size of the grid to divide the image into for analysis.
 const GRID_SIZE = 3;
+// The intensity threshold for a grid cell to be considered prominent.
 const INTENSITY_THRESHOLD = 1;
+// The minimum size of a rectangle to be considered, as a percentage of the image's smaller dimension.
 const MIN_SIZE = 0.1;
+// The maximum size of a rectangle to be considered, as a percentage of the image's smaller dimension.
 const MAX_SIZE = 0.9;
 
-// Initialize Gemini (Ensure GOOGLE_API_KEY is set in Vercel's environment variables)
+// Initialize Gemini. Ensure the GOOGLE_API_KEY is set in the environment variables.
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
 
+// Finds prominent areas in the image using edge detection.
 async function findProminentAreas(imageBuffer) {
     const edges = await sharp(imageBuffer)
         .greyscale()
@@ -24,11 +30,13 @@ async function findProminentAreas(imageBuffer) {
     return edges;
 }
 
+// Checks if a given ratio is close to the Golden Ratio.
 function isGoldenRatio(ratio) {
     const difference = Math.abs(ratio - PHI);
     return difference <= 0.1 * PHI;
 }
 
+// Detects Golden Ratios in the image and returns an SVG overlay and rectangle data.
 async function detectGoldenRatios(imageBuffer) {
     const metadata = await sharp(imageBuffer).metadata();
     const { width, height } = metadata;
@@ -128,6 +136,7 @@ async function detectGoldenRatios(imageBuffer) {
     return { svg, rectanglesData };
 }
 
+// Generates a prompt for Gemini based on the detected rectangles and overall score.
 function generatePrompt(rectanglesData, overallScore, width, height) {
     let prompt = `Analyze the composition of this image (width: ${width}, height: ${height}) with an overall Golden Ratio adherence score of ${overallScore.toFixed(2)}%. `;
     prompt += `The image has ${rectanglesData.length} prominent rectangular areas. `;
@@ -148,6 +157,7 @@ function generatePrompt(rectanglesData, overallScore, width, height) {
     return prompt;
 }
 
+// Gets a response from Gemini based on the image and prompt.
 async function getGeminiResponse(imageBase64, prompt) {
 
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" }); // Use gemini-pro-vision for images
@@ -164,6 +174,7 @@ async function getGeminiResponse(imageBase64, prompt) {
     return text;
 }
 
+// The main endpoint for the API. Handles the image upload and analysis.
 export async function POST(request) {
     try {
         const formData = await request.formData();
@@ -173,7 +184,7 @@ export async function POST(request) {
             return NextResponse.json({ error: 'No image file provided.' }, { status: 400 });
         }
 
-        // ---  Get the image buffer directly from the file ---
+        // Get the image buffer directly from the file.
         const buffer = Buffer.from(await file.arrayBuffer());
 
         const metadata = await sharp(buffer).metadata();
@@ -191,7 +202,7 @@ export async function POST(request) {
 
         const { svg: svgOverlay, rectanglesData } = await detectGoldenRatios(buffer);
 
-          // --- IMPORTANT: Process and output as PNG ---
+        // Composite the SVG overlay onto the image and convert to PNG.
         const processedImageBuffer = await sharp(buffer)
             .composite([{ input: Buffer.from(svgOverlay), top: 0, left: 0 }])
             .png() // Convert to PNG
@@ -199,7 +210,7 @@ export async function POST(request) {
         const processedImageBase64 = processedImageBuffer.toString('base64');
         const prompt = generatePrompt(rectanglesData, clampedScore, width, height);
 
-          // --- IMPORTANT: Use the correct MIME type for Gemini ---
+        // Get the Gemini response.
         const geminiResponse = await getGeminiResponse(processedImageBase64, prompt);
 
         return NextResponse.json({
