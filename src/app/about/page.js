@@ -78,7 +78,7 @@ export default function AboutUsPage() {
                         target="_blank"
                         className="text-primary hover:underline"
                       >
-                        Vishavjit Singh - Project Manager
+                        Vishavjit Singh - Team Lead and backends Developer
                       </Link>
                     </li>
                     <li className="flex items-center gap-2">
@@ -99,7 +99,7 @@ export default function AboutUsPage() {
                         className="text-primary hover:underline"
                       >
                         
-                        Vishavjit singh - Research And Development
+                        Arman Singh Mahal - Frontend Developer
                       </Link>
                     </li>
                   </ul>
