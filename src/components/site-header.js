@@ -1,18 +1,17 @@
-import Link from "next/link";
 
+import Link from "next/link";
 import { MainNav } from "../components/main-nav";
-import { ThemeToggle } from "../components/theme-toggle";
 import Image from "next/image";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-12 md:px-12">
-      <div className="flex h-16 items-center">
-        <Link href="/" className="flex items-center space-x-2">
-          <Image src="/logo.png" width={40} height={40} alt="Phi Sight Logo" />
-          <span className="text-xl font-bold">Phi Sight</span>
+    <header className="sticky top-0 z-50 w-full border-b border-gray-800 bg-black/80 backdrop-blur-lg">
+      <div className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
+        <Link href="/" className="flex items-center space-x-3">
+          <Image src="/logo-white.svg" width={40} height={40} alt="Phi Sight Logo" />
+          <span className="text-2xl font-bold text-white">Phi Sight</span>
         </Link>
-        <div className="flex flex-1 items-center justify-end ">
+        <div className="flex items-center">
           <MainNav />
         </div>
       </div>
