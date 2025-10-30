@@ -10,9 +10,9 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Phi Sight - Golden Ratio Image Analysis",
+  title: "InSight – Golden Ratio Intelligence Suite",
   description:
-    "Analyze your images for golden ratio composition and get recommendations for improvement.",
+    "InSight blends golden ratio science with AI to elevate every image, document, and visual story.",
 };
 
 export default function RootLayout({ children }) {
@@ -27,14 +27,14 @@ export default function RootLayout({ children }) {
           name="google-adsense-account"
           content="ca-pub-7752985411870799"
         ></meta>
-        <meta name='keywords' content="Phi Sight, phisight, golden ratio, enhance image" />
+        <meta name='keywords' content="InSight, golden ratio analyzer, image analysis, visual intelligence" />
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7752985411870799"
           crossorigin="anonymous"
         ></script>
       </head>
-      <body className={`${inter.className} bg-black text-white`}>
+      <body className={`${inter.className} antialiased text-slate-100`}>
         <div className="relative flex min-h-screen flex-col">
           <SiteHeader />
           <main className="flex-1">{children}</main>

@@ -1,8 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  --background: #05070c;
+  --background-alt: #0e141f;
+  --foreground: #f6f7fb;
+  --muted: #9ba9c2;
+  --card: rgba(14, 20, 32, 0.78);
+  --card-border: rgba(245, 212, 128, 0.18);
+  --card-shadow: 0 24px 60px rgba(8, 10, 20, 0.65);
+  --accent: #f6c85f;
+  --accent-strong: #f8a328;
+  --accent-soft: rgba(246, 200, 95, 0.16);
+  --heading: #fff7df;
 }
 
 @theme inline {
@@ -20,9 +29,24 @@
 }
 
 body {
-  background: var(--background);
+  position: relative;
+  min-height: 100vh;
+  background: radial-gradient(circle at 10% 10%, rgba(60, 47, 16, 0.18), transparent 55%),
+    radial-gradient(circle at 85% 15%, rgba(65, 41, 12, 0.22), transparent 50%),
+    linear-gradient(160deg, var(--background) 0%, #050b11 35%, #0e111a 65%, #171d29 100%);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(circle at 50% 0%, rgba(160, 120, 40, 0.08), transparent 55%),
+    radial-gradient(circle at 15% 85%, rgba(119, 91, 53, 0.12), transparent 45%);
+  pointer-events: none;
 }
 
 @keyframes fadeIn {
@@ -51,4 +75,145 @@ body {
 
 .slide-in-up {
   animation: slideInUp 1s ease-in-out;
+}
+
+.gold-gradient-text {
+  background: linear-gradient(120deg, #ffefae, #f6c85f, #f8a328 65%);
+  background-clip: text;
+  color: transparent;
+}
+
+.glass-panel {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 22px;
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(18px);
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.glass-panel::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  pointer-events: none;
+}
+
+.glass-panel:hover {
+  transform: translateY(-6px);
+  border-color: rgba(246, 200, 95, 0.55);
+  box-shadow: 0 28px 70px rgba(12, 16, 28, 0.85);
+}
+
+.accent-ring {
+  position: relative;
+}
+
+.accent-ring::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(120deg, rgba(246, 200, 95, 0.8), rgba(248, 163, 40, 0.35), rgba(255, 255, 255, 0.12));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.soft-glow {
+  box-shadow: 0 0 0 1px rgba(246, 200, 95, 0.15), 0 12px 35px rgba(10, 12, 21, 0.65);
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(246, 200, 95, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(246, 200, 95, 0);
+  }
+}
+
+.pulse-glow {
+  animation: pulseGlow 3.6s ease-in-out infinite;
+}
+
+.muted-text {
+  color: var(--muted);
+}
+
+.section-shell {
+  position: relative;
+  overflow: hidden;
+  border-radius: 32px;
+  background: rgba(13, 16, 24, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 30px 80px rgba(4, 6, 12, 0.65);
+}
+
+.section-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(246, 200, 95, 0.12), transparent 55%),
+    radial-gradient(circle at 80% 40%, rgba(248, 163, 40, 0.08), transparent 60%);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.section-shell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+}
+
+.section-content {
+  position: relative;
+  z-index: 1;
+}
+
+.gradient-button {
+  background: linear-gradient(120deg, #f8d77f, #f6c85f, #f8a328);
+  color: #0b101a;
+  box-shadow: 0 18px 35px rgba(246, 200, 95, 0.38);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.gradient-button:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 24px 40px rgba(246, 200, 95, 0.45);
+}
+
+.divider-glow {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(246, 200, 95, 0.4),
+    rgba(246, 200, 95, 0.25),
+    transparent
+  );
+  border: none;
 }

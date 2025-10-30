@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { Button } from './ui/button';
-import { Card, CardContent } from './ui/card';
 import { marked } from 'marked';
 import { Upload, Sparkles, Check, Copy } from 'lucide-react';
 
@@ -42,26 +41,39 @@ export default function ImageAnalysisPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white p-4 sm:p-8">
-      <div className="max-w-6xl mx-auto">
-        <header className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-2">
-            Golden Ratio Image Analyzer
-          </h1>
-          <p className="text-lg text-gray-400">
-            Upload an image to analyze its composition based on the golden ratio.
-          </p>
+    <div className="min-h-screen px-4 py-12 sm:px-8 lg:px-20">
+      <div className="mx-auto max-w-6xl space-y-12">
+        <header className="space-y-5 text-center">
+          <span className="inline-flex items-center justify-center rounded-full border border-yellow-200/35 bg-yellow-200/10 px-5 py-1 text-xs font-semibold uppercase tracking-[0.34em] text-yellow-100/80">
+            InSight Analyzer
+          </span>
+          <div className="space-y-3">
+            <h1 className="text-3xl font-semibold sm:text-4xl md:text-5xl">
+              Golden Ratio <span className="gold-gradient-text">Image Analyzer</span>
+            </h1>
+            <p className="mx-auto max-w-2xl text-base text-slate-300 sm:text-lg">
+              Upload an image and InSight will layer golden ratio overlays, generate actionable prompts, and grade the composition in seconds.
+            </p>
+          </div>
+          <p className="text-xs uppercase tracking-[0.38em] text-yellow-100/70">No uploads leave your browser</p>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid gap-10 lg:grid-cols-[1.05fr,0.95fr]">
           {/* Image Upload and Preview */}
-          <div className="bg-gray-900 p-8 rounded-lg shadow-lg">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="image-upload" className="cursor-pointer flex flex-col items-center justify-center border-2 border-dashed border-gray-600 rounded-lg p-12 text-center hover:border-gray-400 transition-colors">
-                  <Upload className="h-12 w-12 text-gray-500 mb-4" />
-                  <span className="text-lg font-semibold">Click to upload an image</span>
-                  <span className="text-sm text-gray-500">PNG, JPG, GIF up to 10MB</span>
+          <div className="glass-panel p-8 sm:p-10">
+            <form onSubmit={handleSubmit} className="space-y-8">
+              <div className="accent-ring rounded-3xl bg-black/20 p-2">
+                <label
+                  htmlFor="image-upload"
+                  className="flex cursor-pointer flex-col items-center justify-center rounded-[26px] border border-dashed border-yellow-200/30 bg-black/30 px-8 py-16 text-center transition hover:border-yellow-200/70 hover:bg-black/40"
+                >
+                  <Upload className="mb-5 h-12 w-12 text-yellow-200/70" />
+                  <span className="text-lg font-semibold text-slate-100">Drop or select an image</span>
+                  <span className="mt-2 text-sm text-slate-400">JPG, PNG, WEBP up to 10MB</span>
+                  <span className="mt-6 inline-flex items-center gap-2 rounded-full border border-yellow-200/25 bg-yellow-200/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-yellow-100/70">
+                    <Check className="h-4 w-4" />
+                    Golden ratio ready
+                  </span>
                 </label>
                 <input
                   id="image-upload"
@@ -81,58 +93,83 @@ export default function ImageAnalysisPage() {
                 />
               </div>
               {previewUrl && (
-                <div className="mt-4 rounded-md overflow-hidden border border-gray-700">
-                  <img src={previewUrl} alt="Preview" className="w-full h-auto object-cover" />
+                <div className="rounded-3xl border border-yellow-200/20 bg-black/30 p-2">
+                  <div className="overflow-hidden rounded-[22px] border border-white/10">
+                    <img src={previewUrl} alt="Preview" className="h-auto w-full object-cover" />
+                  </div>
                 </div>
               )}
-              <Button type="submit" disabled={pending} className="w-full h-12 text-lg font-semibold bg-gradient-to-tr from-[#E6C203] to-[#5D4223] text-white transition-transform transform hover:scale-105">
-                {pending ? 'Analyzing...' : 'Analyze Image'}
-                <Sparkles className="ml-2 h-5 w-5" />
+              <Button
+                type="submit"
+                disabled={pending}
+                className="gradient-button inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold uppercase tracking-[0.24em]"
+              >
+                {pending ? "Analyzing..." : "Analyze Image"}
+                <Sparkles className="h-5 w-5" />
               </Button>
             </form>
           </div>
 
           {/* Analysis Result */}
-          <div className="bg-gray-900 p-8 rounded-lg shadow-lg">
-            <h2 className="text-2xl font-bold mb-4">Analysis Result</h2>
-            {response ? (
-              <div className="space-y-6">
-                {previewUrl && (
-                  <div className="relative rounded-md overflow-hidden border border-gray-700">
-                    <img src={previewUrl} alt="Analyzed" className="w-full h-auto object-cover" />
-                    {/* Placeholder for golden ratio overlay */}
-                    <div className="absolute inset-0 border-2 border-yellow-400 opacity-50"></div>
-                  </div>
-                )}
-                <div className="prose prose-invert max-w-none">
-                  {response.text ? (
-                    <div
-                      dangerouslySetInnerHTML={{ __html: marked.parse(response.text) }}
-                    />
-                  ) : (
-                    <pre className="bg-gray-800 p-4 rounded-md text-sm whitespace-pre-wrap">
-                      {JSON.stringify(response, null, 2)}
-                    </pre>
-                  )}
+          <div className="glass-panel p-8 sm:p-10">
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-semibold text-slate-50">Insights</h2>
+              {response?.score && (
+                <span className="rounded-full border border-yellow-200/30 bg-yellow-200/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-yellow-50">
+                  {Math.round(response.score)}% Harmony
+                </span>
+              )}
+            </div>
+            <div className="mt-6 space-y-6">
+              {previewUrl && (
+                <div className="relative overflow-hidden rounded-[22px] border border-yellow-200/30">
+                  <img src={previewUrl} alt="Analyzed" className="h-auto w-full object-cover" />
+                  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(246,200,95,0.35),transparent_62%)] opacity-80 mix-blend-screen" />
                 </div>
-                {response.text && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => navigator.clipboard.writeText(response.text)}
-                    className="border-gray-600 hover:bg-gray-800"
-                  >
-                    <Copy className="mr-2 h-4 w-4" />
-                    Copy Analysis
-                  </Button>
-                )}
-              </div>
-            ) : (
-              <div className="flex flex-col items-center justify-center h-full text-center text-gray-500">
-                <Sparkles className="h-16 w-16 mb-4" />
-                <p>Your image analysis will appear here.</p>
-              </div>
-            )}
+              )}
+              {response ? (
+                <>
+                  <div className="prose prose-invert max-w-none text-sm leading-relaxed text-slate-200">
+                    {response.text ? (
+                      <div dangerouslySetInnerHTML={{ __html: marked.parse(response.text) }} />
+                    ) : (
+                      <pre className="rounded-2xl border border-white/10 bg-black/40 p-4 text-xs text-slate-300">
+                        {JSON.stringify(response, null, 2)}
+                      </pre>
+                    )}
+                  </div>
+                  <div className="flex flex-wrap gap-3">
+                    <span className="rounded-full border border-yellow-200/25 bg-yellow-200/10 px-4 py-1 text-xs uppercase tracking-[0.28em] text-yellow-100">
+                      Composition +
+                    </span>
+                    <span className="rounded-full border border-yellow-200/25 bg-yellow-200/10 px-4 py-1 text-xs uppercase tracking-[0.28em] text-yellow-100">
+                      Story Clarity
+                    </span>
+                    <span className="rounded-full border border-yellow-200/25 bg-yellow-200/10 px-4 py-1 text-xs uppercase tracking-[0.28em] text-yellow-100">
+                      Color Harmony
+                    </span>
+                  </div>
+                  {response.text && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => navigator.clipboard.writeText(response.text)}
+                      className="border-yellow-200/35 bg-black/40 text-yellow-100 hover:bg-black/60"
+                    >
+                      <Copy className="mr-2 h-4 w-4" />
+                      Copy Analysis
+                    </Button>
+                  )}
+                </>
+              ) : (
+                <div className="flex flex-col items-center justify-center rounded-[26px] border border-white/10 bg-black/40 px-6 py-16 text-center text-slate-400">
+                  <Sparkles className="mb-4 h-12 w-12 text-yellow-200/60" />
+                  <p className="text-sm uppercase tracking-[0.28em]">
+                    Upload an image to reveal InSight&apos;s guidance.
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

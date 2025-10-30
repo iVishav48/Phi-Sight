@@ -15,7 +15,7 @@ export default function ServicesPage() {
                   Our Services
                 </h1>
                 <p className="max-w-[900px] text-gray-500 sm:text-base md:text-lg lg:text-xl dark:text-gray-400">
-                  Discover how Phi Sight can transform your visual content with the power of the golden ratio.
+                  Discover how InSight can transform your visual content with the power of the golden ratio.
                 </p>
               </div>
             </div>

@@ -1,136 +1,189 @@
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, Compass, Bolt, Telescope } from "lucide-react";
+import { ArrowRight, Bolt, Compass, Sparkles, Target, Telescope, Users } from "lucide-react";
+
+const values = [
+  {
+    title: "Human + Machine Intuition",
+    description: "We pair human creative direction with AI pattern recognition to uncover the most magnetic version of each frame.",
+    icon: Sparkles,
+  },
+  {
+    title: "Design Systems Thinking",
+    description: "From a single hero image to a full campaign, we map the golden ratio into scalable, reusable guidelines.",
+    icon: Compass,
+  },
+  {
+    title: "Momentum Over Perfection",
+    description: "Rapid prototyping, fast feedback loops, and transparent scoring keep teams shipping at the speed of ideas.",
+    icon: Bolt,
+  },
+];
+
+const team = [
+  {
+    name: "Vishavjit Singh",
+    role: "Studio Lead · Backend Architect",
+    href: "https://www.linkedin.com/in/vishavjit-singh-s0724/",
+    icon: Target,
+  },
+  {
+    name: "Sohraab Dhillon",
+    role: "Lead Developer · Experience Engineer",
+    href: "https://www.linkedin.com/in/sohraab-dhillon/",
+    icon: Telescope,
+  },
+  {
+    name: "Arman Singh Mahal",
+    role: "Frontend Designer · Motion Systems",
+    href: "https://www.linkedin.com/in/arman-1b323a265/",
+    icon: Users,
+  },
+];
 
 export default function AboutUsPage() {
   return (
-    <div className="flex flex-col min-h-screen px-4 sm:px-6 md:px-8 lg:px-12">
-      <main className="flex-1">
-        {/* About Us Section */}
-        <section className="w-full py-12 mt-12 md:py-24 lg:py-32 bg-gradient-to-b from-[#5D4223] to-[#0A0A0A] rounded-lg fade-in">
-          <div className="container mx-auto">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                  About Us
-                </h1>
-                <p className="max-w-[900px] text-gray-500 sm:text-base md:text-lg lg:text-xl dark:text-gray-400">
-                  As part of Enthyuzm's commitment to innovation, we've developed Phi-Sight, a design agency dedicated to crafting visually stunning content using the principles of the golden ratio. Our team of experts is passionate about creating beautiful designs that captivate and inspire. We believe that great design has the power to transform businesses and elevate brands. Let us help you bring your vision to life!
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Our Mission Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 slide-in-up">
-          <div className="container mx-auto">
-            <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:gap-12">
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="space-y-2">
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                    Our Mission
-                  </h2>
-                  <p className="max-w-[600px] text-gray-500 sm:text-base md:text-lg lg:text-xl dark:text-gray-400">
-                    Our mission is to lead the design industry through innovation, delivering visually compelling solutions that leverage the golden ratio and provide unparalleled value to our clients. We are committed to excellence, creativity, and collaboration, and we strive to exceed our clients' expectations with every project we undertake.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center justify-center">
-{/*                 <Image
-                  src="/mission.jpg"
-                  alt="Mission Image"
-                  width={600}
-                  height={400}
-                  className="rounded-md object-cover max-w-full h-auto fade-in"
-                /> */}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Our Team Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 slide-in-up">
-          <div className="container mx-auto">
-            <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:gap-12">
-              <div className="flex items-center justify-center order-2 lg:order-1">
-{/*                 <Image
-                  src="/team.jpg"
-                  alt="Team Image"
-                  width={600}
-                  height={400}
-                  className="rounded-md object-cover max-w-full h-auto fade-in"
-                /> */}
-              </div>
-              <div className="flex flex-col justify-center space-y-4 order-1 lg:order-2">
-                <div className="space-y-2">
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                    Our Team
-                  </h2>
-                  <p className="max-w-[600px] text-gray-500 sm:text-base md:text-lg lg:text-xl dark:text-gray-400">
-                    Our team is comprised of talented professionals who are passionate about design and dedicated to delivering exceptional results for our clients. With expertise in web design, graphic design, and content strategy, we have the skills and experience to bring your vision to life. Meet our team below!
-                  </p>
-                  <ul className="grid gap-2 fade-in">
-                    <li className="flex items-center gap-2">
-                      <Compass className="h-5 w-5 text-primary" />
-                      <Link
-                        href="https://www.linkedin.com/in/vishavjit-singh-s0724/"
-                        target="_blank"
-                        className="text-primary hover:underline"
-                      >
-                        Vishavjit Singh - Team Lead and backends Developer
-                      </Link>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Bolt className="h-5 w-5 text-primary" />
-                      <Link
-                        href="https://www.linkedin.com/in/sohraab-dhillon/"
-                        target="_blank"
-                        className="text-primary hover:underline"
-                      >
-                        Sohraab Dhillon - Lead Developer
-                      </Link>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Telescope className="h-5 w-5 text-primary" />
-                      <Link
-                        href="https://www.linkedin.com/in/arman-1b323a265/"
-                        target="_blank"
-                        className="text-primary hover:underline"
-                      >
-                        
-                        Arman Singh Mahal - Frontend Developer
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Contact Us Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 fade-in">
-          <div className="container mx-auto">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                  Contact Us
-                </h2>
-                <p className="max-w-[900px] text-gray-500 sm:text-base md:text-lg lg:text-xl dark:text-gray-400">
-                  Ready to get started on your next project? Contact us today to learn more about our services and how we can help you achieve your design goals. We look forward to hearing from you!
-                </p>
-              </div>
+    <div className="flex flex-col min-h-screen">
+      <main className="flex-1 space-y-20 px-4 pb-24 pt-20 sm:px-8 lg:px-20">
+        {/* Hero */}
+        <section className="section-shell mx-auto max-w-5xl px-6 py-16 sm:px-10">
+          <div className="section-content space-y-6 text-center">
+            <span className="inline-flex items-center justify-center rounded-full border border-yellow-200/35 bg-yellow-200/10 px-5 py-1 text-xs font-semibold uppercase tracking-[0.34em] text-yellow-100/80">
+              InSight Studio
+            </span>
+            <h1 className="text-3xl font-semibold sm:text-4xl md:text-5xl">
+              We help teams craft <span className="gold-gradient-text">beautiful balance</span>
+            </h1>
+            <p className="mx-auto max-w-2xl text-base text-slate-300 sm:text-lg">
+              InSight began as a simple AI tool and has evolved into a creative partner that fuses the golden ratio with modern storytelling.
+              From campaign art direction to product visuals, we align your imagery with how audiences instinctively perceive harmony.
+            </p>
+            <div className="flex items-center justify-center gap-4 pt-4">
               <Link
-                href="/contact"
-                className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium border text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 fade-in"
+                href="/pricing"
+                className="gradient-button inline-flex items-center justify-center rounded-full px-7 py-3 text-sm font-semibold uppercase tracking-[0.22em]"
               >
-                <span className="bg-gradient-to-tr from-[#5D4223] to-[#FFF1A6] via-[#E6C203] bg-clip-text text-transparent">
-                  Contact Us
-                </span>
-                <ArrowRight className="ml-2 h-4 w-4" />
+                Explore Plans
+                <ArrowRight className="ml-3 h-4 w-4" />
+              </Link>
+              <Link
+                href="/services"
+                className="inline-flex items-center justify-center rounded-full border border-yellow-200/25 px-7 py-3 text-sm font-semibold uppercase tracking-[0.22em] text-yellow-100 transition-colors hover:border-yellow-100"
+              >
+                View Services
               </Link>
             </div>
+          </div>
+        </section>
+
+        {/* Mission */}
+        <section className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.1fr,0.9fr]">
+          <div className="glass-panel p-10">
+            <div className="space-y-6">
+              <span className="text-xs font-semibold uppercase tracking-[0.34em] text-yellow-200/70">Mission</span>
+              <h2 className="text-3xl font-semibold text-slate-50 sm:text-4xl">
+                Our focus: <span className="gold-gradient-text">make every frame resonate</span>
+              </h2>
+              <p className="text-base text-slate-300">
+                We build tools and frameworks that help creative teams understand, measure, and improve the emotional balance inside their visuals.
+                Every deliverable comes with a clear narrative for why the golden ratio matters to your story.
+              </p>
+              <div className="rounded-2xl border border-yellow-200/25 bg-yellow-200/10 px-6 py-5 text-sm text-yellow-100">
+                InSight powers brand launches, pitch decks, documentary key art, and digital products for teams across the globe.
+              </div>
+            </div>
+          </div>
+          <div className="glass-panel p-10">
+            <h3 className="text-xl font-semibold text-slate-50">How we work</h3>
+            <div className="mt-6 space-y-5">
+              {[
+                "Embed with your creative team to understand context and desired emotion.",
+                "Run AI-guided golden ratio diagnostics to surface opportunities and tensions.",
+                "Prototype overlays, layout variations, and motion cues that reinforce the narrative.",
+                "Deliver polished visuals, clear documentation, and an evolving playbook your team can reuse.",
+              ].map((step, index) => (
+                <div key={step} className="flex gap-4 rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full border border-yellow-200/25 bg-yellow-200/10 text-sm font-semibold text-yellow-100">
+                    {index + 1}
+                  </span>
+                  <p className="text-sm text-slate-300">{step}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Values */}
+        <section className="mx-auto max-w-6xl space-y-12">
+          <div className="text-center">
+            <span className="text-xs font-semibold uppercase tracking-[0.34em] text-yellow-200/70">Values</span>
+            <h2 className="mt-3 text-3xl font-semibold text-slate-50 sm:text-4xl">
+              The principles guiding <span className="gold-gradient-text">InSight</span>
+            </h2>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {values.map(({ title, description, icon: Icon }) => (
+              <div key={title} className="glass-panel h-full p-7">
+                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-yellow-300/10 text-yellow-200">
+                  <Icon className="h-6 w-6" />
+                </span>
+                <h3 className="mt-4 text-xl font-semibold text-slate-50">{title}</h3>
+                <p className="mt-3 text-sm text-slate-300">{description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Team */}
+        <section className="mx-auto max-w-5xl space-y-12">
+          <div className="text-center">
+            <span className="text-xs font-semibold uppercase tracking-[0.34em] text-yellow-200/70">Team</span>
+            <h2 className="mt-3 text-3xl font-semibold text-slate-50 sm:text-4xl">The minds behind InSight</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-sm text-slate-300 sm:text-base">
+              We are technologists, designers, and storytellers obsessed with connecting mathematical beauty to human feeling.
+            </p>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2">
+            {team.map(({ name, role, href, icon: Icon }) => (
+              <Link
+                key={name}
+                href={href}
+                target="_blank"
+                className="glass-panel group flex items-center justify-between gap-4 p-6"
+              >
+                <div>
+                  <p className="text-lg font-semibold text-slate-50">{name}</p>
+                  <p className="text-sm text-slate-300">{role}</p>
+                </div>
+                <span className="flex h-11 w-11 items-center justify-center rounded-full border border-yellow-200/30 bg-yellow-200/10 text-yellow-100 transition-transform group-hover:-translate-y-1">
+                  <Icon className="h-5 w-5" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="mx-auto max-w-4xl rounded-[32px] border border-yellow-200/30 bg-gradient-to-br from-yellow-200/20 via-yellow-200/10 to-transparent px-8 py-14 text-center shadow-[0_35px_90px_rgba(246,200,95,0.22)]">
+          <h2 className="text-3xl font-semibold sm:text-4xl">
+            Ready to build with <span className="gold-gradient-text">InSight</span>?
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-900/80 sm:text-slate-800">
+            Let’s turn your next visual into a moment that feels inevitable. Share your goals and we’ll co-create a golden ratio roadmap.
+          </p>
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-4">
+            <Link
+              href="/contact"
+              className="gradient-button inline-flex items-center justify-center rounded-full px-8 py-3 text-sm font-semibold uppercase tracking-[0.24em]"
+            >
+              Start a Project
+              <ArrowRight className="ml-3 h-4 w-4" />
+            </Link>
+            <Link
+              href="/get-started"
+              className="inline-flex items-center justify-center rounded-full border border-black/20 px-8 py-3 text-sm font-semibold uppercase tracking-[0.24em] text-slate-900 transition-colors hover:border-black/40"
+            >
+              Try Analyzer
+            </Link>
           </div>
         </section>
       </main>

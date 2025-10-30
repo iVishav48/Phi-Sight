@@ -148,19 +148,19 @@ export default function GetStartedPage() {
     <div className="flex flex-col min-h-screen px-4 sm:px-6 md:px-8 lg:px-12">
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="w-full py-12 mt-12 md:py-24 lg:py-32 rounded-lg bg-gradient-to-b from-[#5D4223] to-[#0A0A0A] fade-in">
+        <section className="section-shell w-full py-12 mt-12 md:py-24 lg:py-32 fade-in">
           <div className="container mx-auto">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <h1 className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl lg:text-5xl">
-                  Get Started with Phi Sight
+                  Get Started with <span className="gold-gradient-text">InSight</span>
                 </h1>
-                <p className="max-w-[900px] text-gray-500 sm:text-base md:text-lg lg:text-xl dark:text-gray-400">
+                <p className="max-w-[900px] text-slate-300 sm:text-base md:text-lg lg:text-xl">
                   Upload your image to discover its golden ratio composition and
                   get personalized recommendations.
                 </p>
-                <p className="flex items-center justify-center text-sm text-gray-500 dark:text-gray-400 space-x-2">
-                  <Lock className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                <p className="flex items-center justify-center text-sm text-slate-400 space-x-2">
+                  <Lock className="h-4 w-4 text-yellow-200/70" />
                   <span>Your Image, Your Machine - No Data Sent to the Cloud</span>
                 </p>
               </div>

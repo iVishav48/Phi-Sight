@@ -13,6 +13,7 @@ const Button = React.forwardRef(({
   const variants = {
     default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
     ghost: "hover:bg-accent hover:text-accent-foreground",
+    outline: "border border-yellow-200/35 bg-transparent text-yellow-100 hover:border-yellow-100 hover:bg-yellow-200/10",
     icon: "h-9 w-9 p-0"
   }
   
