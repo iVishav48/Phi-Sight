@@ -58,19 +58,18 @@ export function MainNav() {
         </button>
       </div>
 
-      {isMenuOpen && (
-        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/90 backdrop-blur-xl">
-          <button onClick={() => setIsMenuOpen(false)} aria-label="Close menu" className="absolute top-8 right-8">
+        <div className={`fixed w-[100vw] left-0 ${isMenuOpen ? "top-0" : "top-[-100vh]"} mobile-navbar pb-4 z-50 flex flex-col items-center justify-center bg-black/85 backdrop-blur-3xl`}>
+          <button onClick={() => setIsMenuOpen(false)} aria-label="Close menu" className="absolute top-6 right-8">
             <X className="h-8 w-8 text-yellow-200" />
           </button>
-          <nav className="flex flex-col items-center space-y-8">
+          <nav className="flex flex-col items-center mt-8 space-y-3">
             {routes.map((route) => (
               <Link
                 key={route.href}
                 href={route.href}
                 className={cn(
-                  "text-2xl font-medium text-slate-200 transition-colors hover:text-white",
-                  pathname === route.href && "text-white"
+                  "text-xl font-medium text-slate-200 transition-colors hover:text-white",
+                  pathname === route.href && "text-yellow-400"
                 )}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -86,7 +85,6 @@ export function MainNav() {
             </Link>
           </nav>
         </div>
-      )}
     </>
   );
 }
