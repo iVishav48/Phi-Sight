@@ -83,7 +83,7 @@ body::before {
   color: transparent;
 }
 
-.glass-panel {
+.glass-panel-home{
   position: relative;
   background: var(--card);
   border: 1px solid var(--card-border);
@@ -93,13 +93,20 @@ body::before {
   transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
-.glass-panel::after {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  border-radius: inherit;
-  border: 1px solid rgba(255, 255, 255, 0.03);
-  pointer-events: none;
+.glass-panel-home:hover {
+  transform: translateY(-3px);
+  border-color: rgba(246, 200, 95, 0.55);
+  box-shadow: 0px 7px 30px -15px rgba(246, 200, 95, 0.55);
+}
+
+.glass-panel {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 22px;
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(18px);
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .glass-panel:hover {
@@ -129,20 +136,6 @@ body::before {
   box-shadow: 0 0 0 1px rgba(246, 200, 95, 0.15), 0 12px 35px rgba(10, 12, 21, 0.65);
 }
 
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-.float {
-  animation: float 6s ease-in-out infinite;
-}
-
 @keyframes pulseGlow {
   0%,
   100% {
@@ -168,6 +161,7 @@ body::before {
   background: rgba(13, 16, 24, 0.82);
   border: 1px solid rgba(255, 255, 255, 0.04);
   box-shadow: 0 30px 80px rgba(4, 6, 12, 0.65);
+  backdrop-filter: blur(18px);
 }
 
 .section-shell::before {
@@ -204,6 +198,32 @@ body::before {
 .gradient-button:hover {
   transform: translateY(-2px) scale(1.01);
   box-shadow: 0 24px 40px rgba(246, 200, 95, 0.45);
+}
+
+.gradient-button-mousehover {
+  background: transparent;
+  border: 2px solid #f6c85f;
+  box-shadow: 0 7px 15px rgba(246, 200, 95, 0.38);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, background-color 0.35s ease;
+}
+
+.gradient-button-mousehover:hover{
+  background-color: #ffc848;
+  color: black;
+  box-shadow: 0 14px 30px rgba(246, 200, 95, 0.38);
+}
+
+.gradient-button-sec-mousehover {
+  background: transparent;
+  border: 1px solid #ffffb1;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, background-color 0.35s ease;
+}
+
+.gradient-button-sec-mousehover:hover{
+  background-color: #ffc848;
+  border: 1px solid #f6c85f;
+  color: black;
+  box-shadow: 0 2px 4px rgba(246, 200, 95, 0.38);
 }
 
 .divider-glow {

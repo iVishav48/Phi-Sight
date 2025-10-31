@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import {
   ArrowRight,
@@ -9,6 +10,8 @@ import {
   LineChart,
   Sparkles,
 } from "lucide-react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const coreSteps = [
   {
@@ -44,9 +47,102 @@ const highlights = [
 ];
 
 export default function Home() {
+
+  const [hovered, setHovered] = useState(false);
+  const [hoverRect, setHoverRect] = useState(null);
+  const [distort, setDistort] = useState({ scaleX: 1, scaleY: 1 });
+
+  const x = useMotionValue(-100);
+  const y = useMotionValue(-100);
+
+  const springConfig = { damping: 25, stiffness: 300 };
+  const cursorX = useSpring(x, springConfig);
+  const cursorY = useSpring(y, springConfig);
+
+  useEffect(() => {
+    let lastX = 0, lastY = 0;
+
+    const moveCursor = (e) => {
+      const dx = e.clientX - lastX;
+      const dy = e.clientY - lastY;
+      lastX = e.clientX;
+      lastY = e.clientY;
+
+      const velocity = Math.sqrt(dx * dx + dy * dy);
+      const scaleX = Math.min(1 + velocity / 150, 1.6);
+      const scaleY = Math.max(1 - velocity / 400, 0.7);
+      setDistort({ scaleX, scaleY });
+
+      x.set(e.clientX);
+      y.set(e.clientY);
+    };
+
+    window.addEventListener("mousemove", moveCursor);
+    return () => window.removeEventListener("mousemove", moveCursor);
+  }, [x, y]);
+
+  const handleMouseEnter = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setHoverRect(rect);
+    setHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHovered(false);
+    setHoverRect(null);
+  };
+
+  const [hoverOverCoreFlow , setHoverOverCoreFlow] = useState(false);
+
+  const handleMouseEnterCoreFlow = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setHoverRect(rect);
+    setHovered(true);
+    setHoverOverCoreFlow(true);
+  };
+
+  const handleMouseLeaveCoreFlow = () => {
+    setHovered(false);
+    setHoverRect(null);
+    setHoverOverCoreFlow(false);
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-1 pb-24">
+        {/* Animated Cursor */}
+        <motion.div
+          className="fixed top-0 left-0 pointer-events-none z-10"
+          style={{ translateX: cursorX, translateY: cursorY }}
+        >
+          <motion.div
+            className="rounded-full bg-yellow-400 mix-blend-difference z-10"
+            animate={
+              hovered && hoverRect
+                ? {
+                  width: 0,
+                  height: 0,
+                  x: 0,
+                  y: 0,
+                  opacity: 0,
+                  borderRadius: 0,
+                  scaleX: 0,
+                  scaleY: 0,
+                }
+                : {
+                  width: 60,
+                  height: 60,
+                  x: -30,
+                  y: -30,
+                  opacity: 0.7,
+                  borderRadius: 9999,
+                  scaleX: distort.scaleX,
+                  scaleY: distort.scaleY,
+                }
+            }
+            transition={{ type: "spring", stiffness: 200, damping: 20 }}
+          />
+        </motion.div>
         {/* Hero */}
         <section className="relative isolate overflow-hidden px-4 pb-20 pt-24 sm:px-8 md:px-12 lg:px-20">
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(246,200,95,0.08),transparent_55%)]" />
@@ -67,41 +163,51 @@ export default function Home() {
               <div className="flex flex-wrap items-center gap-4">
                 <Link
                   href="/image-analysis"
-                  className="gradient-button inline-flex items-center justify-center rounded-full px-7 py-3 text-sm font-semibold uppercase tracking-[0.22em]"
+                  className="gradient-button-mousehover inline-flex items-center justify-center rounded-full px-7 py-3 text-sm font-semibold uppercase tracking-[0.22em]"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                 >
                   Launch Analyzer
                   <ArrowRight className="ml-3 h-4 w-4" />
                 </Link>
                 <Link
                   href="/pricing"
-                  className="inline-flex items-center justify-center rounded-full border border-yellow-200/30 px-7 py-3 text-sm font-semibold uppercase tracking-[0.22em] text-yellow-100 transition-colors hover:border-yellow-100 hover:text-yellow-50"
+                  className="gradient-button-sec-mousehover inline-flex items-center justify-center rounded-full border border-yellow-200/30 px-7 py-3 text-sm font-semibold uppercase tracking-[0.22em] text-yellow-100 transition-colors hover:border-yellow-100 hover:text-yellow-50"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                 >
                   Explore Pricing
                 </Link>
               </div>
               <div className="grid gap-4 sm:grid-cols-2 sm:gap-5 lg:max-w-md">
-                <div className="rounded-3xl border border-white/10 bg-white/5 px-5 py-4">
+                <div className="rounded-3xl border-transparent bg-white/5 px-5 py-4 hover:border-amber-400 hover:shadow-amber-200 border-2 transition cursor-default"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}>
                   <p className="text-xs uppercase tracking-[0.28em] text-yellow-200/70">Creative Teams</p>
                   <p className="mt-2 text-2xl font-semibold text-slate-100">12k+</p>
                   <p className="mt-1 text-sm text-slate-400">Designers trust InSight for daily layout decisions.</p>
                 </div>
-                <div className="rounded-3xl border border-white/10 bg-white/5 px-5 py-4">
+                <div className="rounded-3xl border-transparent bg-white/5 px-5 py-4 hover:border-amber-400 hover:shadow-amber-200 border-2 transition cursor-default"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}>
                   <p className="text-xs uppercase tracking-[0.28em] text-yellow-200/70">Time Saved</p>
                   <p className="mt-2 text-2xl font-semibold text-slate-100">4x faster</p>
                   <p className="mt-1 text-sm text-slate-400">Ship polished visuals without multiple revision loops.</p>
                 </div>
               </div>
             </div>
-            <div className="glass-panel relative overflow-hidden p-10">
+            <div className="glass-panel-home relative overflow-hidden p-10" 
+              onMouseEnter={handleMouseEnterCoreFlow} 
+              onMouseLeave={handleMouseLeaveCoreFlow}>
               <div className="absolute -top-16 right-0 h-48 w-48 rounded-full bg-yellow-300/10 blur-3xl"></div>
               <div className="section-content space-y-6">
-                <div className="flex items-center gap-3 text-sm uppercase tracking-[0.32em] text-yellow-200/70">
-                  <Circle className="h-3 w-3 fill-yellow-200/60 text-yellow-200/60" />
+                <div className={`flex items-center gap-3 text-sm uppercase tracking-[0.32em] ${hoverOverCoreFlow?"text-yellow-400":"text-yellow-200/70"}`}>
+                  <Circle className={`h-3 w-3  ${hoverOverCoreFlow?"text-yellow-400 fill-yellow-400":"text-yellow-200/70 fill-yellow-200/60"}`} />
                   <span>Core Flow</span>
                 </div>
                 <div className="space-y-6">
                   {coreSteps.map(({ title, description, icon: Icon }) => (
-                    <div key={title} className="flex gap-4 rounded-2xl border border-white/5 bg-white/[0.02] p-5 transition hover:border-yellow-200/40">
+                    <div key={title} className="flex gap-4 rounded-2xl border border-white/5 bg-white/[0.02] p-5 transition">
                       <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-yellow-300/10 text-yellow-100">
                         <Icon className="h-6 w-6" />
                       </span>
@@ -168,7 +274,7 @@ export default function Home() {
                   copy: "Visualize how every iteration moves you closer to the golden threshold.",
                 },
               ].map(({ icon: Icon, title, copy }) => (
-                <div key={title} className="glass-panel float flex h-full flex-col gap-4 p-7">
+                <div key={title} className="flex h-full flex-col gap-4 p-7 backdrop-blur-xl rounded-2xl border border-yellow-100/35 z-35">
                   <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-yellow-300/10 text-yellow-200">
                     <Icon className="h-6 w-6" />
                   </span>
@@ -182,7 +288,7 @@ export default function Home() {
 
         {/* Highlights */}
         <section className="px-4 pb-20 sm:px-8 md:px-12 lg:px-20">
-          <div className="section-shell mx-auto max-w-6xl px-8 py-14 sm:px-12">
+          <div className="section-shell mx-auto max-w-6xl px-8 py-14 sm:px-12 z-35">
             <div className="section-content grid gap-14 lg:grid-cols-[0.9fr,1.1fr]">
               <div className="space-y-6">
                 <span className="text-xs font-semibold uppercase tracking-[0.34em] text-yellow-200/70">InSight signature</span>
@@ -219,20 +325,24 @@ export default function Home() {
             <h2 className="text-3xl font-semibold sm:text-4xl">
               Bring <span className="gold-gradient-text">balance</span> to your next visual in minutes.
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-900/80 sm:text-slate-800">
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-300">
               Drop an image into InSight and watch proportion, narrative, and clarity line up. Your audience feels the difference instantly.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/image-analysis"
-                className="gradient-button inline-flex items-center justify-center rounded-full px-8 py-3 text-sm font-semibold uppercase tracking-[0.24em]"
+                className="gradient-button-mousehover inline-flex items-center justify-center rounded-full px-8 py-3 text-sm font-semibold uppercase tracking-[0.24em]"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
               >
                 Try InSight Free
                 <ArrowRight className="ml-3 h-4 w-4" />
               </Link>
               <Link
                 href="/about"
-                className="inline-flex items-center justify-center rounded-full border border-black/20 px-8 py-3 text-sm font-semibold uppercase tracking-[0.24em] text-slate-900 transition-colors hover:border-black/40"
+                className="gradient-button-sec-mousehover inline-flex items-center justify-center rounded-full px-8 py-3 text-sm font-semibold uppercase tracking-[0.24em]"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
               >
                 Meet the Studio
               </Link>
