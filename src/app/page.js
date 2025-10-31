@@ -8,7 +8,7 @@ import {
   ImageIcon,
   LayoutDashboard,
   LineChart,
-  Sparkles,
+  Sparkles, Bolt, Compass, Target, Telescope, Users
 } from "lucide-react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -43,6 +43,45 @@ const highlights = [
   {
     title: "Instant Overlays",
     copy: "Toggle Fibonacci spirals, rule of thirds, and symmetry guides with a single tap.",
+  },
+];
+
+const values = [
+  {
+    title: "Human + Machine Intuition",
+    description: "We pair human creative direction with AI pattern recognition to uncover the most magnetic version of each frame.",
+    icon: Sparkles,
+  },
+  {
+    title: "Design Systems Thinking",
+    description: "From a single hero image to a full campaign, we map the golden ratio into scalable, reusable guidelines.",
+    icon: Compass,
+  },
+  {
+    title: "Momentum Over Perfection",
+    description: "Rapid prototyping, fast feedback loops, and transparent scoring keep teams shipping at the speed of ideas.",
+    icon: Bolt,
+  },
+];
+
+const team = [
+  {
+    name: "Vishavjit Singh",
+    role: "Studio Lead · Backend Architect",
+    href: "https://www.linkedin.com/in/vishavjit-singh-s0724/",
+    icon: Target,
+  },
+  {
+    name: "Sohraab Dhillon",
+    role: "Lead Developer · Experience Engineer",
+    href: "https://www.linkedin.com/in/sohraab-dhillon/",
+    icon: Telescope,
+  },
+  {
+    name: "Arman Singh",
+    role: "Frontend Designer · Motion Systems",
+    href: "https://www.linkedin.com/in/arman-1b323a265/",
+    icon: Users,
   },
 ];
 
@@ -281,7 +320,7 @@ export default function Home() {
 
         {/* Highlights */}
         <section className="px-4 pb-20 sm:px-8 md:px-12 lg:px-20">
-          <div className="section-shell mx-auto max-w-6xl px-8 py-14 sm:px-12 z-35">
+          <div className="section-shell mx-auto max-w-6xl px-8 py-14 sm:px-12 z-35 ">
             <div className="section-content grid gap-14 lg:grid-cols-[0.9fr,1.1fr]">
               <div className="space-y-6">
                 <span className="text-xs font-semibold uppercase tracking-[0.34em] text-yellow-200/70">InSight signature</span>
@@ -312,6 +351,27 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Values */}
+        <section className="mx-auto max-w-6xl space-y-12 mb-20">
+          <div className="text-center">
+            <span className="text-xs font-semibold uppercase tracking-[0.34em] text-yellow-200/70">Values</span>
+            <h2 className="mt-3 text-3xl font-semibold text-slate-50 sm:text-4xl">
+              The principles guiding <span className="gold-gradient-text">InSight</span>
+            </h2>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {values.map(({ title, description, icon: Icon }) => (
+              <div key={title} className="h-full p-7 border border-yellow-100/35 z-35 backdrop-blur-xl rounded-2xl">
+                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-yellow-300/10 text-yellow-200">
+                  <Icon className="h-6 w-6" />
+                </span>
+                <h3 className="mt-4 text-xl font-semibold text-slate-50">{title}</h3>
+                <p className="mt-3 text-sm text-slate-300">{description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* Final CTA */}
         <section className="px-4 sm:px-8 md:px-12 lg:px-20">
           <div className="mx-auto max-w-5xl overflow-hidden rounded-[36px] border border-yellow-200/25 bg-gradient-to-br from-yellow-200/20 via-yellow-200/10 to-transparent px-8 py-16 text-center shadow-[0_45px_120px_rgba(246,200,95,0.25)]">
@@ -332,14 +392,45 @@ export default function Home() {
                 <ArrowRight className="ml-3 h-4 w-4" />
               </Link>
               <Link
-                href="/about"
+                href="/services"
                 className="gradient-button-sec-mousehover inline-flex items-center justify-center rounded-full px-8 py-3 text-sm font-semibold uppercase tracking-[0.24em]"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
-                Meet the Studio
+                Services
               </Link>
             </div>
+          </div>
+        </section>
+
+        {/* Team */}
+        <section className="mx-auto max-w-5xl space-y-12 mt-28">
+          <div className="text-center">
+            <span className="text-xs font-semibold uppercase tracking-[0.34em] text-yellow-200/70">Team</span>
+            <h2 className="mt-3 text-3xl font-semibold text-slate-50 sm:text-4xl">The minds behind InSight</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-sm text-slate-300 sm:text-base">
+              We are technologists, designers, and storytellers obsessed with connecting mathematical beauty to human feeling.
+            </p>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2">
+            {team.map(({ name, role, href, icon: Icon }) => (
+              <Link
+                key={name}
+                href={href}
+                target="_blank"
+                className="glass-panel-team group flex items-center justify-between gap-4 p-6"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                <div>
+                  <p className="text-lg font-semibold ">{name}</p>
+                  <p className="text-sm ">{role}</p>
+                </div>
+                <span className="flex h-11 w-11 items-center justify-center rounded-full border border-yellow-200/30 group-hover:border-black ">
+                  <Icon className="h-5 w-5" />
+                </span>
+              </Link>
+            ))}
           </div>
         </section>
       </main>
