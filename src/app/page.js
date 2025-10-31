@@ -8,7 +8,7 @@ import {
   ImageIcon,
   LayoutDashboard,
   LineChart,
-  Sparkles, Bolt, Compass, Target, Telescope, Users
+  Sparkles, Bolt, Compass, Target, Telescope, Users, Heart
 } from "lucide-react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -81,7 +81,7 @@ const team = [
     name: "Arman Singh",
     role: "Frontend Designer · Motion Systems",
     href: "https://www.linkedin.com/in/arman-1b323a265/",
-    icon: Users,
+    icon: Heart,
   },
 ];
 
@@ -352,7 +352,7 @@ export default function Home() {
         </section>
 
         {/* Values */}
-        <section className="mx-auto max-w-6xl space-y-12 mb-20">
+        <section className="mx-auto max-w-6xl space-y-12 mb-20 ">
           <div className="text-center">
             <span className="text-xs font-semibold uppercase tracking-[0.34em] text-yellow-200/70">Values</span>
             <h2 className="mt-3 text-3xl font-semibold text-slate-50 sm:text-4xl">
@@ -361,7 +361,7 @@ export default function Home() {
           </div>
           <div className="grid gap-6 md:grid-cols-3">
             {values.map(({ title, description, icon: Icon }) => (
-              <div key={title} className="h-full p-7 border border-yellow-100/35 z-35 backdrop-blur-xl rounded-2xl">
+              <div key={title} className="h-full p-7 border border-yellow-100/35 z-35 backdrop-blur-xl rounded-2xl mx-6">
                 <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-yellow-300/10 text-yellow-200">
                   <Icon className="h-6 w-6" />
                 </span>
@@ -418,7 +418,7 @@ export default function Home() {
                 key={name}
                 href={href}
                 target="_blank"
-                className="glass-panel-team group flex items-center justify-between gap-4 p-6"
+                className="glass-panel-team group flex items-center justify-between gap-4 p-6 mx-4 lg:mx-0"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
