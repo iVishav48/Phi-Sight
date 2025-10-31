@@ -89,8 +89,8 @@ export function SiteFooter() {
         <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-slate-500 md:flex-row">
           <p>&copy; {new Date().getFullYear()} InSight. All rights reserved.</p>
           <div className="flex items-center gap-4">
-            <Link href="/privacy" className="transition-colors hover:text-yellow-200">Privacy Policy</Link>
-            <Link href="/terms" className="transition-colors hover:text-yellow-200">Terms of Service</Link>
+            <Link href="/privacy-policy" className="transition-colors hover:text-yellow-200">Privacy Policy</Link>
+            <Link href="/terms-conditions" className="transition-colors hover:text-yellow-200">Terms of Service</Link>
           </div>
         </div>
       </div>
