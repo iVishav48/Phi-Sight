@@ -58,7 +58,7 @@ export function MainNav() {
         </button>
       </div>
 
-        <div className={`fixed w-[100vw] left-0 ${isMenuOpen ? "top-0" : "top-[-100vh]"} mobile-navbar pb-4 z-50 flex flex-col items-center justify-center bg-black/85 backdrop-blur-3xl`}>
+        <div className={`fixed w-full left-0 ${isMenuOpen ? "top-0" : "top-[-100vh]"} mobile-navbar pb-4 z-50 flex flex-col items-center justify-center bg-black/85 backdrop-blur-3xl`}>
           <button onClick={() => setIsMenuOpen(false)} aria-label="Close menu" className="absolute top-6 right-8">
             <X className="h-8 w-8 text-yellow-200" />
           </button>
