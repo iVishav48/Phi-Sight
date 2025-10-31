@@ -40,10 +40,10 @@ export function SiteFooter() {
                 <Link href="/image-analysis" className="transition-colors hover:text-yellow-200">Image Analysis</Link>
               </li>
               <li>
-                <Link href="/about" className="transition-colors hover:text-yellow-200">About</Link>
+                <Link href="/pricing" className="transition-colors hover:text-yellow-200">Pricing</Link>
               </li>
               <li>
-                <Link href="/pricing" className="transition-colors hover:text-yellow-200">Pricing</Link>
+                <Link href="/contact" className="transition-colors hover:text-yellow-200">Contact</Link>
               </li>
             </ul>
           </div>
@@ -53,9 +53,6 @@ export function SiteFooter() {
             <ul className="space-y-3 text-sm text-slate-400">
               <li>
                 <Link href="/services" className="transition-colors hover:text-yellow-200">Services</Link>
-              </li>
-              <li>
-                <Link href="/get-started" className="transition-colors hover:text-yellow-200">Get Started</Link>
               </li>
               <li>
                 <Link href="/calculate" className="transition-colors hover:text-yellow-200">Golden Ratio Calculator</Link>
