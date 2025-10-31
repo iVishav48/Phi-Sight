@@ -49,7 +49,6 @@ const highlights = [
 export default function Home() {
 
   const [hovered, setHovered] = useState(false);
-  const [hoverRect, setHoverRect] = useState(null);
   const [distort, setDistort] = useState({ scaleX: 1, scaleY: 1 });
 
   const x = useMotionValue(-100);
@@ -81,29 +80,23 @@ export default function Home() {
     return () => window.removeEventListener("mousemove", moveCursor);
   }, [x, y]);
 
-  const handleMouseEnter = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setHoverRect(rect);
+  const handleMouseEnter = () => {
     setHovered(true);
   };
 
   const handleMouseLeave = () => {
     setHovered(false);
-    setHoverRect(null);
   };
 
   const [hoverOverCoreFlow , setHoverOverCoreFlow] = useState(false);
 
-  const handleMouseEnterCoreFlow = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setHoverRect(rect);
+  const handleMouseEnterCoreFlow = () => {
     setHovered(true);
     setHoverOverCoreFlow(true);
   };
 
   const handleMouseLeaveCoreFlow = () => {
     setHovered(false);
-    setHoverRect(null);
     setHoverOverCoreFlow(false);
   };
 
@@ -118,7 +111,7 @@ export default function Home() {
           <motion.div
             className="rounded-full bg-yellow-400 mix-blend-difference z-10"
             animate={
-              hovered && hoverRect
+              hovered
                 ? {
                   width: 0,
                   height: 0,
