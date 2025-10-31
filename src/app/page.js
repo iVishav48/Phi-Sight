@@ -112,7 +112,7 @@ export default function Home() {
       <main className="flex-1 pb-24">
         {/* Animated Cursor */}
         <motion.div
-          className="fixed top-0 left-0 pointer-events-none z-10"
+          className="fixed top-0 left-0 pointer-events-none z-10 hidden lg:block"
           style={{ translateX: cursorX, translateY: cursorY }}
         >
           <motion.div
