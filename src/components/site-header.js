@@ -10,7 +10,7 @@ export function SiteHeader() {
         <Link href="/" className="group flex items-center space-x-3">
           <span className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-white/5 soft-glow">
             <span className="absolute inset-0 rounded-2xl bg-gradient-to-br from-yellow-500/40 via-yellow-400/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-90"></span>
-            <Image src="/logo-white.svg" width={30} height={30} alt="InSight Logo" className="relative z-10 opacity-90" />
+            <Image src="/logo.png" width={30} height={30} alt="InSight Logo" className="relative z-10 opacity-90" />
           </span>
           <span className="flex flex-col leading-tight">
             <span className="text-[1.75rem] font-semibold uppercase tracking-wide gold-gradient-text drop-shadow">InSight</span>
