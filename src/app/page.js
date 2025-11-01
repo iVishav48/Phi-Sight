@@ -10,7 +10,6 @@ import {
   LineChart,
   Sparkles, Bolt, Compass, Target, Telescope, Users, Heart
 } from "lucide-react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const coreSteps = [
@@ -88,36 +87,6 @@ const team = [
 export default function Home() {
 
   const [hovered, setHovered] = useState(false);
-  const [distort, setDistort] = useState({ scaleX: 1, scaleY: 1 });
-
-  const x = useMotionValue(-100);
-  const y = useMotionValue(-100);
-
-  const springConfig = { damping: 25, stiffness: 300 };
-  const cursorX = useSpring(x, springConfig);
-  const cursorY = useSpring(y, springConfig);
-
-  useEffect(() => {
-    let lastX = 0, lastY = 0;
-
-    const moveCursor = (e) => {
-      const dx = e.clientX - lastX;
-      const dy = e.clientY - lastY;
-      lastX = e.clientX;
-      lastY = e.clientY;
-
-      const velocity = Math.sqrt(dx * dx + dy * dy);
-      const scaleX = Math.min(1 + velocity / 150, 1.6);
-      const scaleY = Math.max(1 - velocity / 400, 0.7);
-      setDistort({ scaleX, scaleY });
-
-      x.set(e.clientX);
-      y.set(e.clientY);
-    };
-
-    window.addEventListener("mousemove", moveCursor);
-    return () => window.removeEventListener("mousemove", moveCursor);
-  }, [x, y]);
 
   const handleMouseEnter = () => {
     setHovered(true);
@@ -127,7 +96,7 @@ export default function Home() {
     setHovered(false);
   };
 
-  const [hoverOverCoreFlow , setHoverOverCoreFlow] = useState(false);
+  const [hoverOverCoreFlow, setHoverOverCoreFlow] = useState(false);
 
   const handleMouseEnterCoreFlow = () => {
     setHovered(true);
@@ -142,39 +111,6 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-1 pb-24">
-        {/* Animated Cursor */}
-        <motion.div
-          className="fixed top-0 left-0 pointer-events-none z-10 hidden lg:block"
-          style={{ translateX: cursorX, translateY: cursorY }}
-        >
-          <motion.div
-            className="rounded-full bg-yellow-400 mix-blend-difference z-10"
-            animate={
-              hovered
-                ? {
-                  width: 0,
-                  height: 0,
-                  x: 0,
-                  y: 0,
-                  opacity: 0,
-                  borderRadius: 0,
-                  scaleX: 0,
-                  scaleY: 0,
-                }
-                : {
-                  width: 60,
-                  height: 60,
-                  x: -30,
-                  y: -30,
-                  opacity: 0.7,
-                  borderRadius: 9999,
-                  scaleX: distort.scaleX,
-                  scaleY: distort.scaleY,
-                }
-            }
-            transition={{ type: "spring", stiffness: 200, damping: 20 }}
-          />
-        </motion.div>
         {/* Hero */}
         <section className="relative isolate overflow-hidden px-4 pb-20 pt-24 sm:px-8 md:px-12 lg:px-20">
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(246,200,95,0.08),transparent_55%)]" />
@@ -193,20 +129,16 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-4">
-                <Link
+              <Link
                   href="/image-analysis"
-                  className="gradient-button-mousehover inline-flex items-center justify-center rounded-full px-7 py-3 text-sm font-semibold uppercase tracking-[0.22em]"
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
+                  className="gradient-button inline-flex items-center justify-center rounded-full px-7 py-3 text-sm font-semibold uppercase tracking-[0.22em]"
                 >
                   Launch Analyzer
                   <ArrowRight className="ml-3 h-4 w-4" />
                 </Link>
                 <Link
                   href="/pricing"
-                  className="gradient-button-sec-mousehover inline-flex items-center justify-center rounded-full border border-yellow-200/30 px-7 py-3 text-sm font-semibold uppercase tracking-[0.22em] text-yellow-100 transition-colors hover:border-yellow-100 hover:text-yellow-50"
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
+                  className="inline-flex items-center justify-center rounded-full border border-yellow-200/30 px-7 py-3 text-sm font-semibold uppercase tracking-[0.22em] text-yellow-100 transition-colors hover:border-yellow-100 hover:text-yellow-50"
                 >
                   Explore Pricing
                 </Link>
@@ -228,13 +160,13 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="glass-panel-home relative overflow-hidden p-10" 
-              onMouseEnter={handleMouseEnterCoreFlow} 
+            <div className="glass-panel-home relative overflow-hidden p-10"
+              onMouseEnter={handleMouseEnterCoreFlow}
               onMouseLeave={handleMouseLeaveCoreFlow}>
               <div className="absolute -top-16 right-0 h-48 w-48 rounded-full bg-yellow-300/10 blur-3xl"></div>
               <div className="section-content space-y-6">
-                <div className={`flex items-center gap-3 text-sm uppercase tracking-[0.32em] ${hoverOverCoreFlow?"text-yellow-400":"text-yellow-200/70"}`}>
-                  <Circle className={`h-3 w-3  ${hoverOverCoreFlow?"text-yellow-400 fill-yellow-400":"text-yellow-200/70 fill-yellow-200/60"}`} />
+                <div className={`flex items-center gap-3 text-sm uppercase tracking-[0.32em] ${hoverOverCoreFlow ? "text-yellow-400" : "text-yellow-200/70"}`}>
+                  <Circle className={`h-3 w-3  ${hoverOverCoreFlow ? "text-yellow-400 fill-yellow-400" : "text-yellow-200/70 fill-yellow-200/60"}`} />
                   <span>Core Flow</span>
                 </div>
                 <div className="space-y-6">
@@ -273,7 +205,7 @@ export default function Home() {
                 Each module is tuned for visual storytellers — from product designers to art directors seeking measurable harmony.
               </p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 ">
               {[
                 {
                   icon: LayoutDashboard,
@@ -306,7 +238,7 @@ export default function Home() {
                   copy: "Visualize how every iteration moves you closer to the golden threshold.",
                 },
               ].map(({ icon: Icon, title, copy }) => (
-                <div key={title} className="flex h-full flex-col gap-4 p-7 backdrop-blur-xl rounded-2xl border border-yellow-100/35 z-35">
+                <div key={title} className="flex h-full flex-col gap-4 p-7 backdrop-blur-xl hover:border-amber-400 rounded-2xl border border-yellow-100/35 z-35">
                   <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-yellow-300/10 text-yellow-200">
                     <Icon className="h-6 w-6" />
                   </span>
@@ -331,10 +263,10 @@ export default function Home() {
                   Not just scores — every overlay, prompt, and ratio highlight is infused with your creative direction, so teams can act fast.
                 </p>
                 <div className="flex flex-wrap gap-3 text-sm text-slate-400">
-                  <span className="rounded-full border border-yellow-200/25 bg-yellow-200/5 px-4 py-2">Art Directors</span>
-                  <span className="rounded-full border border-yellow-200/25 bg-yellow-200/5 px-4 py-2">Brand Studios</span>
-                  <span className="rounded-full border border-yellow-200/25 bg-yellow-200/5 px-4 py-2">Product Teams</span>
-                  <span className="rounded-full border border-yellow-200/25 bg-yellow-200/5 px-4 py-2">Content Creators</span>
+                  <span className="rounded-full text-yellow-100 bg-yellow-200/5 px-4 py-2">Art Directors</span>
+                  <span className="rounded-full text-yellow-100 bg-yellow-200/5 px-4 py-2">Brand Studios</span>
+                  <span className="rounded-full text-yellow-100 bg-yellow-200/5 px-4 py-2">Product Teams</span>
+                  <span className="rounded-full text-yellow-100 bg-yellow-200/5 px-4 py-2">Content Creators</span>
                 </div>
               </div>
               <div className="grid gap-6 md:grid-cols-2">
@@ -384,7 +316,7 @@ export default function Home() {
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/image-analysis"
-                className="gradient-button-mousehover inline-flex items-center justify-center rounded-full px-8 py-3 text-sm font-semibold uppercase tracking-[0.24em]"
+                className="gradient-button  inline-flex items-center justify-center rounded-full px-8 py-3 text-sm font-semibold uppercase tracking-[0.24em]"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
@@ -393,7 +325,7 @@ export default function Home() {
               </Link>
               <Link
                 href="/services"
-                className="gradient-button-sec-mousehover inline-flex items-center justify-center rounded-full px-8 py-3 text-sm font-semibold uppercase tracking-[0.24em]"
+                className="inline-flex items-center justify-center rounded-full border border-yellow-200/30 px-7 py-3 text-sm font-semibold uppercase tracking-[0.22em] text-yellow-100 transition-colors hover:border-yellow-100 hover:text-yellow-50"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >

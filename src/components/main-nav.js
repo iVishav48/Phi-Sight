@@ -23,7 +23,7 @@ export function MainNav() {
     { href: "/", label: "Home" },
     { href: "/calculate", label: "Golden Ratio Calculator" },
     { href: "/image-analysis", label: "Image Analysis" },
-    { href: "/services", label: "Services" },
+    { href: "/about", label: "About" },
     { href: "/pricing", label: "Pricing" },
   ];
 
