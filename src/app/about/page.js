@@ -163,29 +163,32 @@ export default function AboutUsPage() {
         </section>
 
         {/* CTA */}
-        <section className="mx-auto max-w-4xl rounded-[32px] border border-yellow-200/30 bg-gradient-to-br from-yellow-200/20 via-yellow-200/10 to-transparent px-8 py-14 text-center shadow-[0_35px_90px_rgba(246,200,95,0.22)]">
-          <h2 className="text-3xl font-semibold sm:text-4xl">
-            Ready to build with <span className="gold-gradient-text">InSight</span>?
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-900/80 sm:text-slate-800">
+        <section className="px-4 sm:px-8 md:px-12 lg:px-20">
+          <div className="mx-auto max-w-5xl overflow-hidden rounded-[36px] border border-yellow-200/25 bg-gradient-to-br from-yellow-200/20 via-yellow-200/10 to-transparent px-8 py-16 text-center shadow-[0_45px_120px_rgba(246,200,95,0.25)]">
+            <h2 className="text-3xl font-semibold sm:text-4xl">
+            Ready to build with <span className="gold-gradient-text">InSight?</span>
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-300">
             Let’s turn your next visual into a moment that feels inevitable. Share your goals and we’ll co-create a golden ratio roadmap.
-          </p>
-          <div className="mt-7 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="gradient-button inline-flex items-center justify-center rounded-full px-8 py-3 text-sm font-semibold uppercase tracking-[0.24em]"
-            >
-              Start a Project
-              <ArrowRight className="ml-3 h-4 w-4" />
-            </Link>
-            <Link
-              href="/get-started"
-              className="inline-flex items-center justify-center rounded-full border border-black/20 px-8 py-3 text-sm font-semibold uppercase tracking-[0.24em] text-slate-900 transition-colors hover:border-black/40"
-            >
-              Try Analyzer
-            </Link>
+            </p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+              <Link
+                href="/image-analysis"
+                className="gradient-button  inline-flex items-center justify-center rounded-full px-8 py-3 text-sm font-semibold uppercase tracking-[0.24em]"
+              >
+                Try InSight Free
+                <ArrowRight className="ml-3 h-4 w-4" />
+              </Link>
+              <Link
+                href="/services"
+                className="inline-flex items-center justify-center rounded-full border border-yellow-200/30 px-7 py-3 text-sm font-semibold uppercase tracking-[0.22em] text-yellow-100 transition-colors hover:border-yellow-100 hover:text-yellow-50"
+              >
+                Services
+              </Link>
+            </div>
           </div>
         </section>
+
       </main>
     </div>
   );

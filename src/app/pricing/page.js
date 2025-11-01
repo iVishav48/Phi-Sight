@@ -12,6 +12,7 @@ const plans = [
     badge: "Start here",
     cta: "Get Started",
     href: "/get-started",
+    note: "No credit card required",
   },
   {
     name: "Activator",
@@ -258,21 +259,21 @@ export default function PricingPage() {
           <h2 className="text-3xl font-semibold sm:text-4xl">
             Let <span className="gold-gradient-text">InSight</span> guide your next release.
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-900/80 sm:text-slate-800">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-300">
             Teams worldwide are balancing their visuals with precision. Join them and feel the difference a golden ratio lens
             brings to your story.
           </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/image-analysis"
-              className="gradient-button inline-flex items-center justify-center rounded-full px-8 py-3 text-sm font-semibold uppercase tracking-[0.24em]"
+              className="gradient-button  inline-flex items-center justify-center rounded-full px-8 py-3 text-sm font-semibold uppercase tracking-[0.24em]"
             >
               Launch Analyzer
               <ArrowRight className="ml-3 h-4 w-4" />
             </Link>
             <Link
               href="/services"
-              className="inline-flex items-center justify-center rounded-full border border-black/20 px-8 py-3 text-sm font-semibold uppercase tracking-[0.24em] text-slate-900 transition-colors hover:border-black/40"
+              className="inline-flex items-center justify-center rounded-full border border-yellow-200/30 px-7 py-3 text-sm font-semibold uppercase tracking-[0.22em] text-yellow-100 transition-colors hover:border-yellow-100 hover:text-yellow-50"
             >
               Explore Services
             </Link>
