@@ -8,9 +8,11 @@ import {
   ImageIcon,
   LayoutDashboard,
   LineChart,
-  Sparkles, Bolt, Compass, Target, Telescope, Users, Heart
+  Sparkles, Bolt, Compass, Target, Telescope, Users, Heart, Code,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+import Spline from "@splinetool/react-spline";
+import { TypewriterEffect } from "../components/ui/TypewriterEffect";
 
 const coreSteps = [
   {
@@ -68,20 +70,26 @@ const team = [
     name: "Vishavjit Singh",
     role: "Studio Lead · Backend Architect",
     href: "https://www.linkedin.com/in/vishavjit-singh-s0724/",
-    icon: Target,
+    icon: LineChart,
   },
   {
     name: "Sohraab Dhillon",
     role: "Lead Developer · Experience Engineer",
     href: "https://www.linkedin.com/in/sohraab-dhillon/",
-    icon: Telescope,
+    icon: Code,
   },
   {
     name: "Arman Singh",
     role: "Frontend Designer · Motion Systems",
     href: "https://www.linkedin.com/in/arman-1b323a265/",
-    icon: Heart,
+    icon: LayoutDashboard,
   },
+  {
+    name: "Komalpreet Kaur",
+    role: "Documentation Lead · Moral Support",
+    href: "https://www.linkedin.com/in/arman-1b323a265/",
+    icon: Heart,
+  }
 ];
 
 export default function Home() {
@@ -121,15 +129,24 @@ export default function Home() {
               </span>
               <div className="space-y-6">
                 <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
-                  Design with <span className="gold-gradient-text">InSight</span>
+                  <TypewriterEffect
+                    words={[
+                      <span key="insight">
+                        Design with <span className="gold-gradient-text">InSight</span>
+                      </span>,
+                    ]}
+                    className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight align-middle"
+                    cursorClassName="text-yellow-300"
+                  />
                 </h1>
+
                 <p className="max-w-xl text-lg text-slate-300">
-                  The compositional co-pilot that marries timeless ratio principles with modern AI, guiding every image,
-                  storyboard, and campaign toward magnetic balance.
+                  The compositional co-pilot that marries timeless ratio principles with modern AI,
+                  guiding every image, storyboard, and campaign toward magnetic balance.
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-4">
-              <Link
+                <Link
                   href="/image-analysis"
                   className="gradient-button inline-flex items-center justify-center rounded-full px-7 py-3 text-sm font-semibold uppercase tracking-[0.22em]"
                 >

@@ -4,6 +4,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
 import { SiteHeader } from "../components/site-header";
 import { SiteFooter } from "../components/site-footer";
+import CustomCursor from "./customcursor";
 
 import "./globals.css";
 
@@ -36,6 +37,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${inter.className} antialiased text-slate-100`}>
         <div className="relative flex min-h-screen flex-col">
+          <CustomCursor />
           <SiteHeader />
           <main className="flex-1">{children}</main>
           <SiteFooter />

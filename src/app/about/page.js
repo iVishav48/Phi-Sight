@@ -1,5 +1,14 @@
 import Link from "next/link";
-import { ArrowRight, Bolt, Compass, Sparkles, Target, Telescope, Users } from "lucide-react";
+import {
+  ArrowRight,
+  Camera,
+  Check,
+  Circle,
+  ImageIcon,
+  LayoutDashboard,
+  LineChart,
+  Sparkles, Bolt, Compass, Target, Telescope, Users, Heart, Code,
+} from "lucide-react";
 
 const values = [
   {
@@ -38,6 +47,12 @@ const team = [
     href: "https://www.linkedin.com/in/arman-1b323a265/",
     icon: Users,
   },
+  {
+    name: "Komalpreet Kaur",
+    role: "Documentation Lead · Moral Support",
+    href: "https://www.linkedin.com/in/arman-1b323a265/",
+    icon: Heart,
+  }
 ];
 
 export default function AboutUsPage() {
